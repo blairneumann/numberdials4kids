@@ -19,9 +19,13 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "../node_modules/font-awesome/scss/font-awesome.scss"
       ],
-      "scripts": [],
+      "scripts": [ 
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/hammerjs/hammer.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

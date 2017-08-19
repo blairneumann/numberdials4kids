@@ -1,0 +1,16 @@
+.number-dial {
+  display: inline-block;
+  margin: 1em;
+  width: 48px;
+}
+
+.incrementor, .decrementor {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.value {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 4.5em;
+  text-align: center;
+}
