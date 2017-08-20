@@ -11,8 +11,8 @@
     "e2e": "ng e2e",
     "build-prod": "ng build --target=production",
     "build-test": "ng build --target=development",
-    "predeploy": "npm run built-prod",
-    "deploy": "aws s3 rm s3://blairneumann-numberdials4kids --recursive --profile blairneumann && aws s3 sync ./site s3://blairneumann-numberdials4kids --acl public-read --profile blairneumann"
+    "predeploy": "npm run build-prod",
+    "deploy": "aws s3 rm s3://blairneumann-numberdials4kids --recursive --profile blairneumann && aws s3 sync ./dist s3://blairneumann-numberdials4kids --acl public-read --profile blairneumann"
   },
   "private": true,
   "dependencies": {
