@@ -7,5 +7,10 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+
   constructor(private app: AppComponent) { }
+
+  get title() {
+    return this.app.title;
+  }
 }

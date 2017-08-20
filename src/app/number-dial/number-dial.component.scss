@@ -9,6 +9,10 @@
   color: rgba(255, 255, 255, 0.25);
 }
 
+.incrementor:hover, .decrementor:hover {
+  color: rgba(255, 255, 255, 0.80);
+}
+
 .value {
   font-family: 'Comic Sans MS', cursive, sans-serif;
   font-size: 4.5em;

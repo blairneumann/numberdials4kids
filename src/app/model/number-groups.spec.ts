@@ -64,14 +64,16 @@ describe('NumberGroups', () => {
     }
 
     // write '1, 2, 3, ...' in them while verifying iteration up
-    for (let iterator = group.first, idx = 1; iterator; iterator = iterator.right, ++idx) {
+    for (let iterator = group.first, idx = 1; iterator; iterator = iterator.right(), ++idx) {
       expect(iterator).toBeTruthy();
       expect(iterator.value).toEqual(1);
       expect(iterator.value = idx).toEqual(idx);
     }
 
+    expect(group.value).toEqual(123);
+
     // verify iteration down, confirming previous '..., 3, 2, 1'
-    for (let iterator = group.last, idx = maxDigits; iterator; iterator = iterator.left, --idx) {
+    for (let iterator = group.last, idx = maxDigits; iterator; iterator = iterator.left(), --idx) {
       expect(iterator).toBeTruthy();
       expect(iterator.value).toEqual(idx);
     }

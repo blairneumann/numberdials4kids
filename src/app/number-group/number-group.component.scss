@@ -1,5 +1,8 @@
+$color-white: #FFFFFF;
+$color-black: #000000;
+
 .number-group {
-  border: 1px solid white;
+  border: 1px solid $color-white;
   margin: 1em 1.5em;
   padding: 0;
   text-align: center;
@@ -7,8 +10,14 @@
 
 .control {
   display: inline-block;
-  border: 1px solid white;
+  border: 1px solid $color-black;
   padding: 0.5em;
-  margin: 0 0.5em 1em;
+  margin: 0 0.5em 1em 0.5em;
   width: 4em;
+  box-sizing: content-box;
+}
+
+.control:hover {
+  background-color: darken($color-white, 80%);
+  border: 1px solid $color-white;
 }

@@ -1,10 +1,22 @@
 import { Component, Input } from '@angular/core';
 import { NumberDial } from '../model/number-dials';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'number-dial',
   templateUrl: './number-dial.component.html',
-  styleUrls: ['./number-dial.component.scss']
+  styleUrls: [ './number-dial.component.scss', ],
+  animations: [
+    trigger('dialIn', [
+      transition(':enter', [
+        style({
+          transform: 'translateX(0) scale(0)',
+          opacity: 0,
+        }),
+        animate('200ms'),
+      ]),
+    ])
+  ],
 })
 export class NumberDialComponent {
 

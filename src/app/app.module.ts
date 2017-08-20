@@ -1,5 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NumberDialComponent } from './number-dial/number-dial.component';
@@ -22,10 +23,11 @@ export class MyHammerConfig extends HammerGestureConfig {
     NumberDialComponent,
     NumberGroupComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     AppComponent,
