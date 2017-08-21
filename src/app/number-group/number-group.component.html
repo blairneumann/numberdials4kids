@@ -1,12 +1,9 @@
 <div class="number-group">
   <div class="number-dials">
-    <number-dial *ngFor="let dial of group.dials" [model]="dial" [@dialOut]></number-dial>
+    <number-dial *ngFor="let dial of group.dials" [model]="dial" [@dialInOut]></number-dial>
   </div>
-  <!--
   <div class="controls">
-    <div class="control increment" (click)="increment()"><span class="fa fa-plus"></span></div>
-    <div class="control play-pause" (click)="playPause()"><span class="fa fa-play" id="playPause"></span></div>
-    <div class="control decrement" (click)="decrement()"><span class="fa fa-minus"></span></div>
+    <div class="control grow" (click)="grow()"><span class="fa fa-plus"></span></div>
+    <div class="control shrink" (click)="shrink()"><span class="fa fa-minus"></span></div>
   </div>
-  -->
 </div>

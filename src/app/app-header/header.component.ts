@@ -11,6 +11,6 @@ export class HeaderComponent {
   constructor(private app: AppComponent) { }
 
   get title() {
-    return this.app.title;
+    return this.app.title; 
   }
 }

@@ -33,8 +33,9 @@ describe('NumberDials', () => {
 
   it('should be the first and only in its group', () => {
 
-    // should be the first and only in its group
-    expect(dial.isFirst && dial.isOnly).toBeTruthy();
+    // should be the first, last, and only in its group
+    expect(dial.isFirst && dial.isLast && dial.isOnly).toBeTruthy();
+    expect(dial.left()).toBeFalsy();
     expect(dial.right()).toBeFalsy();
 
     // should have a group that grows
@@ -77,7 +78,7 @@ describe('NumberDials', () => {
     expect(dial.value).toEqual(radix - 1);
     expect(dial.left()).toBeFalsy();
 
-    // get ready
+    // increment and shift dial to the left
     expect(dial.increment()).toBeTruthy();
     expect(dial = dial.left()).toBeTruthy();
     expect(dial.right()).toBeTruthy();
@@ -93,24 +94,26 @@ describe('NumberDials', () => {
       }
     }
 
+    console.log(dial.group.value);
+    
     // should add a dial when incrementing up to radix^2
     expect(dial.value).toEqual(radix - 1);
-    expect(dial.increment()).toBeTruthy();
+    expect(dial.right()).toBeTruthy();
+    expect(dial.right().increment()).toBeTruthy();
     expect(dial.value).toEqual(0);
     expect(dial.left().value).toEqual(1);
-
+    
     // should remove that dial when decremented back below
     expect(dial.left().decrement()).toBeTruthy();
     expect(dial.value).toEqual(radix - 1);
     expect(dial.left()).toBeFalsy();
-
-
-    // get ready
-    expect(dial.increment()).toBeTruthy();
+    
+    // increment and shift dial to the left
+    expect(dial.right().increment()).toBeTruthy();
     expect(dial = dial.left()).toBeTruthy();
     expect(dial.right()).toBeTruthy();
     expect(dial.left()).toBeFalsy();
-
+    
     // should increment up to radix^3 - 1 (999)
     for (let idx = 1; idx < radix; ++idx) {
       expect(dial.right().right().increment()).toBeTruthy();
@@ -122,7 +125,7 @@ describe('NumberDials', () => {
         expect(dial.value).toEqual(idx);
       }
     }
-
+        
     // should decrement each down to '111'
     dial = group.first;
     for (let idx = 1; idx < radix - 1; ++idx) {
@@ -212,7 +215,6 @@ describe('NumberDials', () => {
     expect(group.value).toEqual(0);
   });
 
-  // TODO: Make this pass when carrying is properly enabled
   it('should increment from zero to max and decrement back to zero by the right-most digit', () => {
     let value = 0;
 
@@ -220,29 +222,21 @@ describe('NumberDials', () => {
     expect(dial.decrement()).toBeTruthy();
     expect(dial.value).toEqual(0);
 
-    console.log('right-increment/decrement')
-    console.log(value +' '+ group.value);
-
     dial = group.last;
     for (let idx = 1; idx < Math.pow(radix, power); ++idx) { 
-      // expect(dial.increment()).toBeTruthy();
+      expect(dial.increment()).toBeTruthy();
       ++value;
     }
 
-    console.log(value +' '+ group.value);
-
     for (let idx = 1; idx < Math.pow(radix, power); ++idx) { 
-      // expect(dial.decrement()).toBeTruthy(); 
+      expect(dial.decrement()).toBeTruthy(); 
       --value;
     }
-
-    console.log(value +' '+ group.value);
 
     // should be back at zero
     expect(group.value).toEqual(0);
   });
 
-  // TODO: Make this pass when carrying is properly enabled
   it('should increment from zero to \'999\' and decrement back to zero in-order', () => {
     let value = 0;
 
@@ -250,28 +244,29 @@ describe('NumberDials', () => {
     expect(dial.decrement()).toBeTruthy();
     expect(dial.value).toEqual(0);
 
-    console.log('in-order');
-    console.log(value +" "+ group.value);
-
     for (let i100s = 0; i100s < radix; ++i100s) {
       for (let i10s = 0; i10s < radix; ++i10s) {
         for (let i1s = 0; i1s < radix; ++i1s) {          
+          if (i1s == radix - 1 && i10s == radix - 1 && i100s == radix - 1)
+            continue;
+
+          expect(dial.increment()).toBeTruthy();
           ++value;
         }
       }
     }
 
-    console.log(value +" "+ group.value);
-
     for (let i100s = 0; i100s < radix; ++i100s) {
       for (let i10s = 0; i10s < radix; ++i10s) {
         for (let i1s = 0; i1s < radix; ++i1s) {
+          if (!i1s && !i10s && !i100s)
+            continue;
+
+          expect(dial.decrement()).toBeTruthy(); 
           --value;
         }
       }
     }
-
-    console.log(value +" "+ group.value);
 
     // should be back at zero
     expect(group.value).toEqual(0);

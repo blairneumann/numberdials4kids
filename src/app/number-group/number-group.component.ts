@@ -1,82 +1,52 @@
-import { Component, Pipe, PipeTransform, OnInit } from '@angular/core';
+import { Component, Pipe, PipeTransform } from '@angular/core';
 import { NumberGroup, minDigits, maxDigits } from '../model/number-groups';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-
-/*
-declare var $: any;
-declare var AWS: any;
-declare var ChattyKathy: any;
-*/
 
 @Component({
   selector: 'number-group',
   templateUrl: './number-group.component.html',
   styleUrls: [ './number-group.component.scss', ],
   animations: [
-    trigger('dialOut', [
-      state('*', 
+    trigger('dialInOut', [
+      transition(':enter', [
         style({
-          opacity: 1,
-        })
-      ),
+          transform: 'translateX(0) scale(0)',
+          opacity: 0,
+        }),
+        animate('200ms ease-out'),
+      ]),
       transition(':leave', [
-        animate('200ms', style({
+        animate('200ms ease-in', style({
           transform: 'translateX(0) scale(0)',
           opacity: 0,
         })),
       ]),
-    ])
+    ]),
   ],
 })
-export class NumberGroupComponent implements OnInit {
+export class NumberGroupComponent {
 
-  private _group: NumberGroup;
-  // private kathy: any;
+  private _model: NumberGroup;
 
   constructor() {
-    this._group = new NumberGroup();
+    this._model = new NumberGroup();
   }
 
   get group() {
-    return this._group;
+    return this._model;
   }
-
-  ngOnInit() {
-    /*
-    var awsCredentials = new AWS.Credentials("", "");
-    var settings = {
-        awsCredentials: awsCredentials,
-        awsRegion: "us-west-2",
-        pollyVoiceId: "Justin",
-        textType: 'ssml',
-        cacheSpeech: true
-    }
-
-    this.kathy = ChattyKathy(settings);
-    */
-  }
-
-  /*
-  playPause() {
-    $('#playPause').removeClass('fa-play');
-    $('#playPause').addClass('fa-pause');
-      
-    this.kathy.SpeakWithPromise(String(this._group.value)).then(() => {
-      $('#playPause').removeClass('fa-pause');
-      $('#playPause').addClass('fa-play');
-    });
-  }
-  */
   
-  increment() {
-    if (this._group.length < maxDigits) {
-      this._group.grow();
+  grow(): boolean {
+    if (this._model.length < maxDigits) {
+      return this._model.grow();
     }
+    return false;
   }
 
-  decrement() {
-    if (this._group.length > minDigits) {
-      this._group.shrink();
+  shrink(): boolean {
+    if (this._model.length > minDigits) {
+      return this._model.shrink();
     }
+    return false;
   }
 }

@@ -1,0 +1,17 @@
+.container {
+  box-sizing: border-box;
+  position: relative;
+  margin: 1em;
+  padding: 1em;
+  height: calc(100vh - 2em);
+  min-height: calc(320px - 2em);
+  border: 1px solid white;
+}
+
+number-group {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}

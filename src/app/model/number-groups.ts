@@ -63,7 +63,7 @@ export class NumberGroup {
     let idx = this.dials.indexOf(dial);
     if (-1 == idx) return null;
     if (0 == idx) {
-      if (this.grow(0)) {
+      if (ensure && this.grow(0)) {
         ++idx;
       } else {
         return null;
