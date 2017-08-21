@@ -19,4 +19,4 @@ Upon launching the app, the child is presented with a single number dial (one it
 
 ## Deployment
 
-[AWS](http://blairneumann-numberdials4kids.s3-website-us-west-2.amazonaws.com/)
+[AWS S3](http://blairneumann-numberdials4kids.s3-website-us-west-2.amazonaws.com/)
