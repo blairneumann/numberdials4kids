@@ -10,10 +10,6 @@ A number dial is a UI control representing a single-digit decimal number from 0.
 ## Number Group collection
 A number dials collection is stack of number dial controls representing an arbitrary positive decimal integer. There is always at least one number dial on the stack and additional number dial controls can be pushed and popped. The top of the stack represent left-hand digits of the represented number and the bottom of the stack represents right-hand digits.
 
-### Number Dial Rules
-- When all number dials on the stack are at "9", then rotating the left-most number dial above "9" pushes a new number dial onto the stack, initialized to "1", and rotates all other number dials to "0".
-- Similarly, when all other number dials on the stack are "0", then rotating the left-most number dial below "1" removes that number dial and rotates all other number dials to "9". 
-
 ## User Experience
 Upon launching the app, the child is presented with a single number dial (one item on the stack) initialized to "1". The child can rotate this dial freely, including above "9" which adds a second number dial representing a 10s column. The child is free to explore numbers in this manner consistent with the rules of the number dials collection described above.
 
