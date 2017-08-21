@@ -3,7 +3,7 @@
     <number-dial *ngFor="let dial of group.dials" [model]="dial" [@dialInOut]></number-dial>
   </div>
   <div class="controls">
-    <div class="control grow" (click)="grow()"><span class="fa fa-plus"></span></div>
-    <div class="control shrink" (click)="shrink()"><span class="fa fa-minus"></span></div>
+    <div class="control grow" [class.disabled]="disabled.grow" (click)="grow()" (mouseup)="mouseup()"><span class="fa fa-plus"></span></div>
+    <div class="control shrink" [class.disabled]="disabled.shrink" (click)="shrink()" (mouseup)="mouseup()"><span class="fa fa-minus"></span></div>
   </div>
 </div>

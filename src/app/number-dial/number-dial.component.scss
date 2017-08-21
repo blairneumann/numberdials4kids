@@ -4,13 +4,17 @@
   width: 48px;
 }
 
-.incrementor, .decrementor {
+.increment, .decrement {
   text-align: center;
   color: rgba(255, 255, 255, 0.25);
 }
 
-.incrementor:active, .decrementor:active {
+.increment:active, .decrement:active {
   color: rgba(255, 255, 255, 0.80);
+}
+
+.increment.disabled:active, .decrement.disabled:active {
+  color: rgba(255, 0, 0, 0.80);
 }
 
 .value {

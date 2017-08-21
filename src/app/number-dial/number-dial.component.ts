@@ -11,6 +11,8 @@ export class NumberDialComponent {
 
   _model: NumberDial;
 
+  disabled = { increment: false, decrement: false }
+
   @Input() set model(model: NumberDial) {
     this._model = model;
   }
@@ -24,10 +26,19 @@ export class NumberDialComponent {
   }
 
   increment() {
-    this._model.increment();
+    if (!this._model.increment()) {
+      this.disabled.increment = true;
+    }
   }
 
   decrement() {
-    this._model.decrement();
+    if (!this._model.decrement()) {
+      this.disabled.decrement = true;
+    }
+  }
+
+  mouseup() {
+    this.disabled.increment = false;
+    this.disabled.decrement = false;
   }
 }

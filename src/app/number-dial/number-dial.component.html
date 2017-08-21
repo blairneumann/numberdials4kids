@@ -1,5 +1,5 @@
 <div class="number-dial" (swipeup)="increment()" (swipedown)="decrement()">
-  <div class="incrementor" (click)="increment()"><span class="fa fa-chevron-up"></span></div>
+  <div class="increment" [class.disabled]="disabled.increment" (click)="increment()" (mouseup)="mouseup()"><span class="fa fa-chevron-up"></span></div>
   <div class="value">{{ value }}</div>
-  <div class="decrementor" (click)="decrement()"><span class="fa fa-chevron-down"></span></div>
+  <div class="decrement disabled" [class.disabled]="disabled.decrement" (click)="decrement()" (mouseup)="mouseup()"><span class="fa fa-chevron-down"></span></div>
 </div>

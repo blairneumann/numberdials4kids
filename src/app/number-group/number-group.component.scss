@@ -1,5 +1,6 @@
 $color-white: #FFFFFF;
 $color-black: #000000;
+$color-red: #FF0000;
 
 .number-group {
   text-align: center;
@@ -21,4 +22,9 @@ number-dial {
 .control:active {
   background-color: darken($color-white, 80%);
   border: 1px solid $color-white;
+}
+
+.control.disabled:active {
+  background-color: darken($color-red, 25%); 
+  border: 1px solid $color-red; 
 }
