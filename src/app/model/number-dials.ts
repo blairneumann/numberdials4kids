@@ -102,11 +102,17 @@ export class NumberDial {
       let right = this.right();
 
       while (right && right.value === 0) {
-        right.value = radix - 1;
-        right = right.right();
+
+        // decrementing the 10s place from 10, for example
+        if (right.isLast)
+          break;
+
+        let next = right.right();
+        right.remove();
+        right = next;
       }
 
-      return this._group.shrink();
+      return this.remove();
     }
 
     // borrow
@@ -131,5 +137,11 @@ export class NumberDial {
 
     // decrementing a non-first digit below zero 
     return false;
+  }
+
+  /** Utility **/
+
+  remove(): boolean {
+    return this._group.remove(this);
   }
 }
